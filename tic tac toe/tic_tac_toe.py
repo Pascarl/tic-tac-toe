@@ -3,6 +3,9 @@ import random
 print('Welcome to Tic Tac Toe!')
 
 def choose_first():
+    
+    #chooses a random player turn
+    
     if random.randint(0, 1) == 0:
         return 'Player 2'
     else:
@@ -10,25 +13,25 @@ def choose_first():
 
 def display_board(board):
     
-    print('   |   |')
-    print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
-    print('   |   |')
-    print('-----------')
-    print('   |   |')
-    print(' ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
-    print('   |   |')
-    print('-----------')
-    print('   |   |')
+    #prints game board
+    
+    print("")
     print(' ' + board[1] + ' | ' + board[2] + ' | ' + board[3])
-    print('   |   |')
-
+    print('-----------')
+    print(' ' + board[4] + ' | ' + board[5] + ' | ' + board[6])
+    print('-----------')
+    print(' ' + board[7] + ' | ' + board[8] + ' | ' + board[9])
+    print("")
+    
 def player_input():
+    
+    #choose player marker
     
     marker = ''
     
     while not (marker == 'X' or marker == 'O'):
         
-        marker = input('Player 1: Do you want to be X or O? ').upper()
+        marker = input('Player 1: Do you want to be X or O? ').upper() 
 
     if marker == 'X':
         return ('X', 'O')
@@ -51,19 +54,27 @@ def win_check(board,mark):
 
 def space_check(board, position):
     
+    # checks player selected board space
+    
     return board[position] == ' '
 
 def full_board_check(board):
+    
+    # checks full board spaces
+
     for i in range(1,10):
         if space_check(board, i):
             return False
     return True
 
 def player_choice(board):
+    
+    # player board position choice 
+    
     position = 0
     
     while position not in [1,2,3,4,5,6,7,8,9] or not space_check(board, position):
-        position = int(input('Choose your next position: (1-9) '))
+        position = int(input('Choose your next position: (1-9) \n\n'))
         
     return position
 
@@ -72,7 +83,9 @@ def replay():
     return input('Do you want to play again? Enter Yes or No: ').lower().startswith('y')
 
 while True:
+    
     # Reset the board
+    
     theBoard = [' '] * 10
     player1_marker, player2_marker = player_input()
     turn = choose_first()
